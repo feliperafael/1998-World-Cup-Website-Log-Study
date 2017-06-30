@@ -27,7 +27,7 @@ def logBinGz2Text(gz_file,output_name):
 
 logBinGz2Text(gz_file,"recreate.out")
 
-#pode ocorrer de algumas linhas vir com erro
+# pode ocorrer de algumas linhas vir com erro
 data = pd.read_csv(path_tools+"output/"+file_name,sep=' ',header=None,error_bad_lines=False)
 
 #R->clientID, date, MethodNames[method], - -   ObjectNames[R->objectID], ProtocolNames[http],   CodeNames[status],R->size
