@@ -37,13 +37,13 @@ data = data.sort_values(['clientID', 'timestamp'], ascending=[True, True])
 
 sns.distplot(data['timestamp'],kde=True)
 #plt.hist(data['timestamp'])
-plt.title("Requisicoes X Tempo - file : "+str(gz_file))
-plt.ylabel("Requisicoes")
-plt.xlabel("Tempo")
+plt.title("Requests X Time - file : "+str(gz_file))
+plt.ylabel("Requests")
+plt.xlabel("Time")
 plt.xlim(min(data['timestamp']),max(data['timestamp']))
-espacado = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
-tempos = [time.strftime('%H:%M:%S', time.localtime(item)) for item in espacado]
-plt.xticks(espacado, tempos)
+spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
+times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
+plt.xticks(spacing, times)
 plt.show()
 
 
@@ -51,12 +51,11 @@ plt.show()
 sns.distplot(data['timestamp'], hist_kws=dict(cumulative=True),
              kde_kws=dict(cumulative=True))
 plt.ylim(0,1)
-plt.title("Probabilidade X Requisicao - file : "+str(gz_file))
-plt.ylabel("Probabilide")
-plt.xlabel("Requisicao")
+plt.title("Probability X Requests - file : "+str(gz_file))
+plt.ylabel("Probability")
+plt.xlabel("Requests")
 plt.xlim(min(data['timestamp']),max(data['timestamp']))
-espacado = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
-#print espacado
-tempos = [time.strftime('%H:%M:%S', time.localtime(item)) for item in espacado]
-plt.xticks(espacado, tempos)
+spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
+times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
+plt.xticks(spacing, times)
 plt.show()
