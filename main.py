@@ -35,13 +35,28 @@ data = pd.read_csv(path_tools+"output/"+file_name,sep=' ',header=None,error_bad_
 data = data.rename(columns={0: 'clientID', 3: 'timestamp',4 : 'url', 5 : 'protocol', 6: 'code', 7 : 'size'})
 data = data.sort_values(['clientID', 'timestamp'], ascending=[True, True])
 
-plt.hist(data['timestamp'])
+sns.distplot(data['timestamp'],kde=True)
+#plt.hist(data['timestamp'])
 plt.title("Requisicoes X Tempo - file : "+str(gz_file))
 plt.ylabel("Requisicoes")
 plt.xlabel("Tempo")
 plt.xlim(min(data['timestamp']),max(data['timestamp']))
 espacado = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
-print espacado
+tempos = [time.strftime('%H:%M:%S', time.localtime(item)) for item in espacado]
+plt.xticks(espacado, tempos)
+plt.show()
+
+
+#cdf
+sns.distplot(data['timestamp'], hist_kws=dict(cumulative=True),
+             kde_kws=dict(cumulative=True))
+plt.ylim(0,1)
+plt.title("Probabilidade X Requisicao - file : "+str(gz_file))
+plt.ylabel("Probabilide")
+plt.xlabel("Requisicao")
+plt.xlim(min(data['timestamp']),max(data['timestamp']))
+espacado = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
+#print espacado
 tempos = [time.strftime('%H:%M:%S', time.localtime(item)) for item in espacado]
 plt.xticks(espacado, tempos)
 plt.show()
