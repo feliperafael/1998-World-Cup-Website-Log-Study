@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import os
 
 import numpy as np
@@ -35,4 +36,12 @@ data = data.rename(columns={0: 'clientID', 3: 'timestamp',4 : 'url', 5 : 'protoc
 data = data.sort_values(['clientID', 'timestamp'], ascending=[True, True])
 
 plt.hist(data['timestamp'])
+plt.title("Requisicoes X Tempo - file : "+str(gz_file))
+plt.ylabel("Requisicoes")
+plt.xlabel("Tempo")
+plt.xlim(min(data['timestamp']),max(data['timestamp']))
+espacado = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
+print espacado
+tempos = [time.strftime('%H:%M:%S', time.localtime(item)) for item in espacado]
+plt.xticks(espacado, tempos)
 plt.show()
