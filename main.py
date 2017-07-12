@@ -12,9 +12,12 @@ import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as md
+import sys
 
 path_tools = 'ita_public_tools/'
 gz_file = 'test_log.gz' #logfile no formato binario
+if sys.argv[1] != "" :
+	gz_file = sys.argv[1]
 file_name = 'recreate.out' #logfile name
 
 def logBinGz2Text(gz_file,output_name):
@@ -44,7 +47,7 @@ plt.xlim(min(data['timestamp']),max(data['timestamp']))
 spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
 times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
 plt.xticks(spacing, times)
-plt.savefig('figs/Requests_X_Time.png')
+plt.savefig('figs/Requests_X_Time'+gz_file[:len(gz_file)-3]+'.png')
 plt.show()
 
 
@@ -59,5 +62,6 @@ plt.xlim(min(data['timestamp']),max(data['timestamp']))
 spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
 times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
 plt.xticks(spacing, times)
-plt.savefig('figs/Probability_X_Requests.png')
+plt.savefig('figs/Probability_X_Requests'+gz_file[:len(gz_file)-3]+'.png')
 plt.show()
+
