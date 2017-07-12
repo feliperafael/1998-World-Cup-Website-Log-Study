@@ -44,6 +44,7 @@ plt.xlim(min(data['timestamp']),max(data['timestamp']))
 spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
 times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
 plt.xticks(spacing, times)
+plt.savefig('figs/Requests_X_Time.png')
 plt.show()
 
 
@@ -58,4 +59,5 @@ plt.xlim(min(data['timestamp']),max(data['timestamp']))
 spacing = np.linspace(min(data['timestamp']),max(data['timestamp']),5)
 times = [time.strftime('%H:%M:%S', time.localtime(item)) for item in spacing]
 plt.xticks(spacing, times)
+plt.savefig('figs/Probability_X_Requests.png')
 plt.show()
