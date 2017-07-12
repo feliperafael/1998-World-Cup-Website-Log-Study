@@ -16,8 +16,10 @@ import sys
 
 path_tools = 'ita_public_tools/'
 gz_file = 'test_log.gz' #logfile no formato binario
-if sys.argv[1] != "" :
+
+if len(sys.argv) == 2 :
 	gz_file = sys.argv[1]
+	
 file_name = 'recreate.out' #logfile name
 
 def logBinGz2Text(gz_file,output_name):
